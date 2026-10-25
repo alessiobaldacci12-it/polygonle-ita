@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polygonle Italia - Indovina la Parola Geometrica</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header / Barra Superiore -->
+    <header class="app-header">
+        <div class="header-left">
+            <button id="btn-help" class="icon-btn" title="Regole di gioco">❓</button>
+        </div>
+        <h1 class="logo">POLYGONLE</h1>
+        <div class="header-right">
+            <a href="https://paypal.me/AlessioBaldacci" target="_blank" rel="noopener noreferrer" class="coffee-btn" title="Offri un caffè">
+                ☕ <span class="coffee-text">Offri un caffè</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Modalità di Gioco e Azioni -->
+    <div class="game-controls">
+        <div class="mode-selector">
+            <button id="mode-daily" class="mode-btn active">📅 Giornaliera</button>
+            <button id="mode-practice" class="mode-btn">🔄 Allenamento</button>
+        </div>
+        <button id="btn-surrender" class="action-btn surrender-btn">🏳️ Mi Arrendo</button>
+    </div>
+
+    <!-- Area del Gioco principale -->
+    <main class="game-container">
+        <!-- Riga Unica dei Simboli in Alto -->
+        <div id="symbols-row" class="symbols-row"></div>
+
+        <!-- Griglia dei 6 tentativi (7 colonne) -->
+        <div id="board" class="board"></div>
+    </main>
+
+    <!-- Tastiera Virtuale -->
+    <div id="keyboard" class="keyboard"></div>
+
+    <!-- Modale Regole (Pop-up Iniziale) -->
+    <div id="modal-rules" class="modal overlay">
+        <div class="modal-content">
+            <span class="modal-close" id="close-rules">&times;</span>
+            <h2>Come Giocare a Polygonle</h2>
+            <div class="rules-body">
+                <p>Indovina la parola segreta da <strong>7 lettere</strong> in 6 tentativi!</p>
+                
+                <div class="rule-box">
+                    <h3>🔷 I Simboli in Alto</h3>
+                    <p>Sopra la griglia trovi la sequenza di simboli e colori corrispondenti alla parola segreta:</p>
+                    <ul>
+                        <li>Simboli e colori <strong>identici</strong> indicano che in quelle colonne c'è la <strong>stessa lettera</strong>.</li>
+                        <li>Simboli <strong>diversi</strong> corrispondono a <strong>lettere diverse</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-box">
+                    <h3>🎨 I Colori del Riscontro</h3>
+                    <div class="example-row">
+                        <div class="tile correct">A</div>
+                        <span><strong>Verde:</strong> La lettera è corretta e nella posizione giusta.</span>
+                    </div>
+                    <div class="example-row">
+                        <div class="tile present">E</div>
+                        <span><strong>Giallo:</strong> La lettera è nella parola, ma in un'altra posizione.</span>
+                    </div>
+                    <div class="example-row">
+                        <div class="tile absent">O</div>
+                        <span><strong>Grigio:</strong> La lettera non fa parte della parola segreta.</span>
+                    </div>
+                </div>
+            </div>
+            <button id="btn-start-game" class="primary-btn">Ho Capito, Gioca!</button>
+        </div>
+    </div>
+
+    <!-- Modale Fine Partita (Vittoria / Sconfitta / Resa) -->
+    <div id="modal-end" class="modal overlay hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="close-end">&times;</span>
+            <h2 id="end-title">Risultato</h2>
+            <p id="end-message" class="end-message"></p>
+            <div class="solution-display">
+                La parola era: <strong id="end-word">-------</strong>
+            </div>
+            <div class="end-actions">
+                <button id="btn-restart" class="primary-btn">Nuova Partita</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifiche -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
