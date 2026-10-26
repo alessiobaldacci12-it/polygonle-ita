@@ -1,5 +1,5 @@
 /* ==========================================================================
-   POLYGONLE - Stili Grafici Puliti (Simboli in Alto + Flip Animation)
+   POLYGONLE - Stili Grafici (Simboli Grandi + Flip Animation)
    ========================================================================== */
 
 :root {
@@ -156,13 +156,14 @@ body {
     margin-bottom: 15px;
 }
 
+/* Riga Simboli in Alto (Modificata con poligoni più grandi) */
 .symbols-row {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
     width: 100%;
-    margin-bottom: 12px;
-    height: 40px;
+    margin-bottom: 15px;
+    height: 48px;
 }
 
 .symbol-box {
@@ -172,8 +173,8 @@ body {
 }
 
 .shape-icon {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
 }
 
 .board {

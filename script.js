@@ -1,6 +1,7 @@
 /**
  * POLYGONLE ITALIA - Script Principale
- * Gestisce l'importazione JSON, simboli in alto, animazione flip e blocco della giornaliera.
+ * Gestisce l'importazione JSON, i simboli in alto ingranditi, l'animazione flip,
+ * la selezione giornaliera basata su epoch days e il blocco della sfida giornaliera.
  */
 
 const FALLBACK_SOLUZIONI = ["ANANAS", "BALLATA", "CASCATA", "FANTASMA", "ROBOTICA", "SABATO", "MARTELL", "PALLONE", "TARANTOLA"];
@@ -86,7 +87,6 @@ async function loadDictionaries() {
 }
 
 function initGame() {
-    // Se la modalità è daily ma è già stata completata, passa automaticamente a practice
     if (mode === "daily" && isDailyCompleted()) {
         showToast("Hai già completato la sfida di oggi! Passaggio all'Allenamento.");
         mode = "practice";
@@ -111,13 +111,9 @@ function selectTargetWord() {
     const pool = validSol.length > 0 ? validSol : FALLBACK_SOLUZIONI;
 
     if (mode === "daily") {
-        const now = new Date();
-        const dateStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-        let hash = 0;
-        for (let i = 0; i < dateStr.length; i++) {
-            hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        const index = Math.abs(hash) % pool.length;
+        // Uso dei giorni trascorsi dall'epoca Unix per garantire una rotazione univoca e progressiva ogni giorno
+        const epochDays = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
+        const index = epochDays % pool.length;
         targetWord = pool[index].toUpperCase();
     } else {
         const index = Math.floor(Math.random() * pool.length);
